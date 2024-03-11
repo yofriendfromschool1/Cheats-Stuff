@@ -1,0 +1,5 @@
+int x = nameLength (3)
+
+x = x + 0xCA
+
+x = x ^ 0x3D8D40F
