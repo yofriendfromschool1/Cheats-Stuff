@@ -1,0 +1,40 @@
+{
+    "automatic_update": true,
+    "esp_box_color_enemy": [
+        175,
+        75,
+        75
+    ],
+    "esp_box_color_team": [
+        75,
+        175,
+        75
+    ],
+    "esp_distance_color": [
+        75,
+        75,
+        175
+    ],
+    "esp_name_color": [
+        75,
+        75,
+        175
+    ],
+    "esp_skeleton_color_enemy": [
+        175,
+        75,
+        75
+    ],
+    "esp_skeleton_color_team": [
+        75,
+        175,
+        75
+    ],
+    "flag_render_distance": 200,
+    "render_distance": -1.0,
+    "show_box_esp": false,
+    "show_extra_flags": false,
+    "show_head_tracker": true,
+    "show_skeleton_esp": false,
+    "team_esp": true
+}
