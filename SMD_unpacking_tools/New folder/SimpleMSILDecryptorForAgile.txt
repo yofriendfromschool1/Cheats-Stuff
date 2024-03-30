@@ -1,0 +1,25 @@
+SimpleMSILDecryptorForAgile:
+this tool decrypts methods of last version of Agile;
+inspirated by duyan13 https://board.b-at-s.info/index.php?showtopic=9313
+
+Two Frameworks are supported: Framework 2.0 and Framework 4.0;
+Framework 4+ (latter Frameworks like 4.6.1 etc.) should be suported
+by Framework 4.0:
+Place Simple_MSIL_Decryptor.exe.config, SJITHook.dll and Simple_MSIL_Decryptor.exe
+in the target program directory; start Simple_MSIL_Decryptor.exe
+from NetBox 4.0 and try to decrypt target assembly;
+if reports missing assemblies you should place them in the target
+directory for beeing able to decrypt MSIL of those methods;
+in the end undecrypted count should be 0.
+
+
+Next step: unvirtualize Agile with de4dot:
+This may not work for some targets!
+After we decrypt MSIL we deobfuscate methods with de4dot v3.1.41592,
+we just set decrypts methods to false so de4dot won't decrypt methods
+by adding to de4dot.exe the parameter:
+--an-methods false
+
+in command line do:
+de4dot.exe filename.exe --an-methods false
+
