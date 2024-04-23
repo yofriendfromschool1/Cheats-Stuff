@@ -1,0 +1,5 @@
+future
+uuid
+hypothesis==2.0.0
+pyinstaller
+colorama
