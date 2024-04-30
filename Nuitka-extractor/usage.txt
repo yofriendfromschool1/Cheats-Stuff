@@ -1,0 +1,2 @@
+$ ./nuitka-extractor <file name>
+X:\> nuitka-extractor.exe <file name>
