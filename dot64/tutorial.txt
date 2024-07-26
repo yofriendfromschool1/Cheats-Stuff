@@ -1,0 +1,19 @@
+==============================================================================
+Tutorial/Setup
+==============================================================================
+firstly open the setup.bat after its done it should open up a open file executable
+if it didnt open the dot64.pyw
+==============================================================================
+BUG FIXES
+==============================================================================
+1. the application didnt opened/the executable does not want to open in cause that happens open the dot64.pyw
+2. the python file didnt opened this may be cause the imports didnt installed correctly take a look at it
+==============================================================================================================
+SUPPORT
+==============================================================================================================
+our official discord server for support is https://discord.gg/getsolaris
+==============================================================================================================
+
+Dot 64 Shall Rise! 
+
+==============================================================================================================
