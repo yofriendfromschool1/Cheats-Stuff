@@ -1,0 +1,62 @@
+/*
+ * Base typedefs
+ */
+
+typedef bool32 bool;
+typedef bool8 boolean; /* used primarily by lower-level Windows components */
+    
+typedef charascii char;
+typedef charutf16 wchar;
+
+typedef int8 sbyte; /* should be byte, actually */
+typedef uint8 byte;
+
+typedef int16 short;
+typedef int16 word;
+typedef uint16 ushort;
+
+typedef int32 int;
+typedef int32 dword;
+typedef int32 long;
+typedef uint32 uint;
+typedef uint32 ulong;
+
+typedef int64 large_integer; /* or LARGE_INTEGER */
+typedef int64 longlong;
+typedef int64 qword;
+typedef uint64 ulonglong;
+
+typedef single float;
+/* typedef double double; */ /* double is already called double */
+
+typedef stringascii str;
+typedef stringascii string;
+typedef stringutf16 wstr;
+typedef stringutf16 wstring;
+
+typedef wstr* lpcwstr; /* "Long Pointer To Const Wide-Character String" */
+typedef wstr* lpctstr; /* most apps are in Unicode, so assume TCHAR = WCHAR */
+typedef str* lpcstr; /* ANSI */
+
+typedef pvoid handle;
+typedef pvoid ppvoid;
+
+#if _X86_
+
+typedef int32 int_ptr;
+typedef uint32 uint_ptr;
+typedef int32 long_ptr;
+typedef uint32 ulong_ptr;
+
+typedef int32 size_t;
+
+#else
+
+typedef int64 int_ptr;
+typedef uint64 uint_ptr;
+typedef int64 long_ptr;
+typedef uint64 ulong_ptr;
+
+typedef int64 size_t;
+
+#endif

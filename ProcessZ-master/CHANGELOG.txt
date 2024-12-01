@@ -1,0 +1,15 @@
+ProcessZ:
+
+- v1.0:
+
+Modified process hacker with bypass
+Working with XIGNCODE Anti Cheat
+
+-----
+
+Information:
+
+This modification was created with a focus on cheat developers with games that use XIGNCODE
+For example: Point Blank
+
+The program may have some instabilities, as this version was slightly adapted to work on Windows 10

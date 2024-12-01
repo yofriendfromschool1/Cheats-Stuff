@@ -1,0 +1,2456 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProcessHacker.Common</name>
+    </assembly>
+    <members>
+        <member name="T:ProcessHacker.Common.BaseConverter">
+            <summary>
+            Contains methods to parse numbers from string representations using different bases.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.BaseConverter.ReverseString(System.String)">
+            <summary>
+            Reverses a string.
+            </summary>
+            <param name="str">The string to be reversed</param>
+            <returns>The reversed string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.BaseConverter.ToNumber(System.String,System.Int32)">
+            <summary>
+            Converts a string to a number using the specified base.
+            </summary>
+            <remarks>
+            This function does not parse prefixes; to do so, use <see cref="M:ProcessHacker.Common.BaseConverter.ToNumberParse(System.String)"/>
+            </remarks>
+            <param name="number">The string to convert</param>
+            <param name="b">The base to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.BaseConverter.ToNumberParse(System.String)">
+            <summary>
+            Converts a string to a number, parsing prefixes to determine the base.
+            </summary>
+            <param name="number">The string to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.BaseConverter.ToNumberParse(System.String,System.Boolean)">
+            <summary>
+            Converts a string to a number, parsing prefixes to determine the base.
+            </summary>
+            <param name="number">The string to convert.</param>
+            <param name="allowNonStandardExts">Enables or disables non-standard prefixes for 
+            bases 2 (b), 3 (t), 4 (q), 12 (w) and 32 (r).</param>
+            <returns></returns>
+        </member>
+        <member name="T:ProcessHacker.Common.CircularBuffer`1">
+            <summary>
+            Provides methods for manipulating a circular buffer. A circular buffer 
+            is a fixed-size array where old elements will be automatically deleted 
+            as new elements are added.
+            </summary>
+            <remarks>
+            This data structure is not thread-safe. You must provide your own 
+            synchronization if more than one thread reads from or writes to the 
+            buffer.
+            </remarks>
+            <example>
+            Ten-element circular buffer:
+            Data array:     [4] [3] [2] [1] [0] [9] [8] [7] [6] [5]
+                                                 ^ most recent data
+                                                 ^ index
+            </example>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.#ctor(System.Int32)">
+            <summary>
+            Creates a new circular buffer of the specified size.
+            </summary>
+            <param name="size">The size of the buffer.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.CircularBuffer`1.Item(System.Int32)">
+            <summary>
+            Gets or sets an element in the buffer. This is guaranteed to 
+            never throw an exception.
+            </summary>
+            <param name="index">
+            A zero-based index into the buffer. Index 0 contains the 
+            most recently added item, and higher positive indicies 
+            access less recent items. Index -1 contains the least recently 
+            added item, and lower negative indicies access more recent 
+            items.
+            </param>
+        </member>
+        <member name="P:ProcessHacker.Common.CircularBuffer`1.Count">
+            <summary>
+            Gets the number of elements stored in the buffer.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.CircularBuffer`1.Size">
+            <summary>
+            Gets the maximum number of elements that can be stored in 
+            the buffer.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Add(`0)">
+            <summary>
+            Adds an element to the buffer. If the maximum buffer size 
+            has been reached, the least recently added element will 
+            be erased by the new element.
+            </summary>
+            <param name="value">The element to add.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Resize(System.Int32)">
+            <summary>
+            Resizes the circular buffer.
+            </summary>
+            <param name="newSize">The new maximum buffer size.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.ToArray">
+            <summary>
+            Converts the buffer to an array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.IndexOf(`0)">
+            <summary>
+            Gets the index of the specified element in the array.
+            </summary>
+            <param name="item">The element to search for.</param>
+            <returns>A positive index if the element was found. Otherwise, -1.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Insert(System.Int32,`0)">
+            <summary>
+            This method is not supported.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.RemoveAt(System.Int32)">
+            <summary>
+            This method is not supported.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Clear">
+            <summary>
+            Clears the buffer.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Contains(`0)">
+            <summary>
+            Gets whether the buffer contains the specified element.
+            </summary>
+            <param name="item">The element to search for.</param>
+            <returns>Whether the element is present.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the elements of the buffer to the specified array.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index of the destination array at which to begin copying.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.CircularBuffer`1.IsReadOnly">
+            <summary>
+            Gets whether the buffer is read-only.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.Remove(`0)">
+            <summary>
+            This method is not supported.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.GetEnumerator">
+            <summary>
+            Gets an enumerator for the buffer.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.CircularBuffer`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets an enumerator for the buffer.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.SecuredHandleTable">
+            <summary>
+            Provides methods for managing handles to objects securely.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.SecuredHandleTable`1">
+            <summary>
+            Provides methods for managing handles to objects securely.
+            </summary>
+            <typeparam name="TEntry">The type of each handle table entry.</typeparam>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.SecuredHandleTable`1.Allocate``1(ProcessHacker.Common.Objects.IRefCounted,``0)">
+            <summary>
+            Creates a handle to an object with the specified granted access.
+            </summary>
+            <typeparam name="TAccess">The type of access mask.</typeparam>
+            <param name="obj">The object to reference.</param>
+            <param name="grantedAccess">The granted access to the object.</param>
+            <returns>The new handle.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.SecuredHandleTable`1.ReferenceByHandle``1(System.Int32,``0)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="TAccess">The type of access mask.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <param name="access">The desired access to the object.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.SecuredHandleTable`1.ReferenceByHandle``1(System.Int32,``0,System.Boolean)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="TAccess">The type of access mask.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <param name="access">The desired access to the object.</param>
+            <param name="throwOnAccessDenied">
+            Whether an exception will be thrown if access to the object is denied.
+            </param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.SecuredHandleTable`1.ReferenceByHandle``2(System.Int32,``1)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="T">The type of the object to reference.</typeparam>
+            <typeparam name="TAccess">The type of access mask.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <param name="access">The desired access to the object.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.SecuredHandleTable`1.ReferenceByHandle``2(System.Int32,``1,System.Boolean)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="T">The type of the object to reference.</typeparam>
+            <typeparam name="TAccess">The type of access mask.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <param name="access">The desired access to the object.</param>
+            <param name="throwOnAccessDenied">
+            Whether an exception will be thrown if access to the object is denied.
+            </param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.OutOfOrderException">
+            <summary>
+            Indicates that an operation was performed out-of-order.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.DelayedReleasePool">
+            <summary>
+            Represents a pool of objects to be disposed or dereferenced at some point.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.DelayedReleasePool.DelayedReleaseFlags">
+            <summary>
+            Describes how an object should be disposed.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.DelayedReleasePool.DelayedReleaseObject">
+            <summary>
+            Describes an object that is to be disposed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.DelayedReleasePool.CurrentPool">
+            <summary>
+            Gets the currently active delayed release pool.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.DelayedReleasePool.PoolStack">
+            <summary>
+            Gets the stack of delayed release pools.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.PopPool(ProcessHacker.Common.Objects.DelayedReleasePool)">
+            <summary>
+            Restores an older delayed release pool from the pool stack.
+            </summary>
+            <param name="pool">The current delayed release pool.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.PushPool(ProcessHacker.Common.Objects.DelayedReleasePool)">
+            <summary>
+            Sets the specified delayed release pool as the currently active pool.
+            </summary>
+            <param name="pool">The pool to set.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.#ctor">
+            <summary>
+            Creates a delayed release pool and sets it as the currently active pool.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.AddDereference(ProcessHacker.Common.Objects.BaseObject)">
+            <summary>
+            Adds the specified object for dereferencing.
+            </summary>
+            <param name="obj">The object to dereference.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.AddDispose(ProcessHacker.Common.Objects.BaseObject)">
+            <summary>
+            Adds the specified object for disposal.
+            </summary>
+            <param name="obj">The object to dispose.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.Drain">
+            <summary>
+            Releases all objects in the pool.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.DelayedReleasePool.Drain(System.Boolean)">
+            <summary>
+            Releases all objects in the pool.
+            </summary>
+            <param name="managed">Whether to release managed resources.</param>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.HandleTable">
+            <summary>
+            Provides methods for managing handles to objects.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.HandleTable`1">
+            <summary>
+            Provides methods for managing handles to objects.
+            </summary>         
+            <typeparam name="TEntry">The type of each handle table entry.</typeparam>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.HandleTable`1.EnumerateHandleTableDelegate">
+            <summary>
+            Represents a callback function for handle table enumeration.
+            </summary>
+            <param name="handle">The current handle.</param>
+            <param name="entry">The current object.</param>
+            <returns>Return true to stop enumerating; otherwise return false.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.Allocate(ProcessHacker.Common.Objects.IRefCounted)">
+            <summary>
+            Creates a handle to the specified object.
+            </summary>
+            <param name="obj">The object to reference.</param>
+            <returns>The new handle.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.Allocate(ProcessHacker.Common.Objects.IRefCounted,`0)">
+            <summary>
+            Creates a handle to the specified object.
+            </summary>
+            <param name="obj">The object to reference.</param>
+            <param name="entry">The handle table entry to use.</param>
+            <returns>The new handle.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.Enumerate(ProcessHacker.Common.Objects.HandleTable{`0}.EnumerateHandleTableDelegate)">
+            <summary>
+            Enumerates the handles in the handle table.
+            </summary>
+            <param name="callback">The callback for the enumeration.</param>
+            <returns>Whether the enumeration was stopped by the callback.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.Free(System.Int32)">
+            <summary>
+            Closes a handle.
+            </summary>
+            <param name="handle">The handle to close.</param>
+            <returns>Whether the handle was closed.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.LookupEntry(System.Int32)">
+            <summary>
+            Gets the handle table entry for a handle.
+            </summary>
+            <param name="handle">The handle to lookup.</param>
+            <returns>A handle table entry.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.LookupObject(System.Int32)">
+            <summary>
+            Gets the object referenced by a handle.
+            </summary>
+            <param name="handle">The handle to lookup.</param>
+            <returns>
+            An object. This object has not been referenced and is 
+            not guaranteed to be valid.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.LookupObject``1(System.Int32)">
+            <summary>
+            Gets the object referenced by a handle.
+            </summary>
+            <typeparam name="T">The type of the object to retrieve.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <returns>
+            An object. This object has not been referenced and is 
+            not guaranteed to be valid.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.ReferenceByHandle(System.Int32)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <param name="handle">The handle to lookup.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.ReferenceByHandle(System.Int32,`0@)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <param name="handle">The handle to lookup.</param>
+            <param name="entry">The handle table entry.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.ReferenceByHandle``1(System.Int32)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="T">The type of the object to reference.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.HandleTable`1.ReferenceByHandle``1(System.Int32,`0@)">
+            <summary>
+            References an object using a handle.
+            </summary>
+            <typeparam name="T">The type of the object to reference.</typeparam>
+            <param name="handle">The handle to lookup.</param>
+            <param name="entry">The handle table entry.</param>
+            <returns>
+            An object. This object has been referenced and must be 
+            dereferenced once it is no longer needed.
+            </returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Objects.BaseObject">
+            <summary>
+            Provides methods for managing a disposable object or resource.
+            </summary>
+            <remarks>
+            <para>
+            Each disposable object starts with a reference count of one 
+            when it is created. The object is not owned by the creator; 
+            rather, it is owned by the GC (garbage collector). If the user 
+            does not dispose the object, the finalizer will be called by 
+            the GC, the reference count will be decremented and the object 
+            will be freed. If the user chooses to call Dispose, the reference 
+            count will be decremented and the object will be freed. The 
+            object is no longer owned by the GC and the finalizer will be 
+            suppressed. Any further calls to Dispose will have no effect.
+            </para>
+            <para>
+            If the user chooses to use reference counting, the object 
+            functions normally with the GC. If the object's reference count 
+            is incremented after it is created and becomes 2, it will be 
+            decremented when it is finalized or disposed. Only after the 
+            object is dereferenced will the reference count become 0 and 
+            the object will be freed.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.CreatedCount">
+            <summary>
+            Gets the number of disposable, owned objects that have been created.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.FreedCount">
+            <summary>
+            Gets the number of disposable objects that have been freed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.DisposedCount">
+            <summary>
+            Gets the number of disposable objects that have been Disposed with managed = true.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.FinalizedCount">
+            <summary>
+            Gets the number of disposable objects that have been Disposed with managed = false.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.ReferencedCount">
+            <summary>
+            Gets the number of times disposable objects have been referenced.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.DereferencedCount">
+            <summary>
+            Gets the number of times disposable objects have been dereferenced.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Objects.BaseObject._value">
+            <summary>
+            An Int32 containing various fields.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.#ctor">
+            <summary>
+            Initializes a disposable object.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.#ctor(System.Boolean)">
+            <summary>
+            Initializes a disposable object.
+            </summary>
+            <param name="owned">Whether the resource is owned.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Finalize">
+            <summary>
+            Ensures that the GC does not own the object.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dispose">
+            <summary>
+            Ensures that the GC does not own the object.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dispose(System.Boolean)">
+            <summary>
+            Ensures that the GC does not own the object.
+            </summary>
+            <param name="managed">Whether to dispose managed resources.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.DisposeDelayed">
+            <summary>
+            Queues the object for disposal in the current delayed release pool.
+            </summary> 
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.DisposeObject(System.Boolean)">
+            <summary>
+            Disposes the resources of the object. This method must not be 
+            called directly; instead, override this method in a derived class.
+            </summary>
+            <param name="disposing">Whether or not to dispose managed objects.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.Disposed">
+            <summary>
+            Gets whether the object has been freed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.Owned">
+            <summary>
+            Gets whether the object will be freed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.OwnedByGc">
+            <summary>
+            Gets whether the object is owned by the garbage collector.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Objects.BaseObject.ReferenceCount">
+            <summary>
+            Gets the current reference count of the object.
+            </summary>
+            <remarks>
+            This information is for debugging purposes ONLY. DO NOT 
+            base memory management logic upon this value.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.DisableOwnership(System.Boolean)">
+            <summary>
+            Declares that the object should no longer be owned.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dereference">
+            <summary>
+            Decrements the reference count of the object.
+            </summary>
+            <returns>The old reference count.</returns>
+            <remarks>
+            <para>
+            DO NOT call Dereference if you have not called Reference. 
+            Call Dispose instead.
+            </para>
+            <para>
+            If you are calling Dereference from a finalizer, call 
+            Dereference(false).
+            </para>
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dereference(System.Boolean)">
+            <summary>
+            Decrements the reference count of the object.
+            </summary>
+            <param name="managed">Whether to dispose managed resources.</param>
+            <returns>The new reference count.</returns>
+            <remarks>
+            <para>If you are calling this method from a finalizer, set 
+            <paramref name="managed" /> to false.</para>
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dereference(System.Int32)">
+            <summary>
+            Decreases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to dereference the object.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Dereference(System.Int32,System.Boolean)">
+            <summary>
+            Decreases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to dereference the object.</param>
+            <param name="managed">Whether to dispose managed resources.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.DereferenceDelayed">
+            <summary>
+            Queues the object for dereferencing in the current delayed release pool.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Reference">
+            <summary>
+            Increments the reference count of the object.
+            </summary>
+            <returns>The new reference count.</returns>
+            <remarks>
+            <para>
+            You must call Dereference once (when you are finished with the 
+            object) to match each call to Reference. Do not call Dispose.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.BaseObject.Reference(System.Int32)">
+            <summary>
+            Increases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to reference the object.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Dereference">
+            <summary>
+            Decrements the reference count of the object.
+            </summary>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Dereference(System.Boolean)">
+            <summary>
+            Decrements the reference count of the object.
+            </summary>
+            <param name="managed">Whether to dispose managed resources.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Dereference(System.Int32)">
+            <summary>
+            Decreases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to dereference the object.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Dereference(System.Int32,System.Boolean)">
+            <summary>
+            Decreases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to dereference the object.</param>
+            <param name="managed">Whether to dispose managed resources.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Dispose(System.Boolean)">
+            <summary>
+            Ensures that the reference counting system has exclusive control 
+            over the lifetime of the object.
+            </summary>
+            <param name="managed">Whether to dispose managed resources.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Reference">
+            <summary>
+            Increments the reference count of the object.
+            </summary>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Objects.IRefCounted.Reference(System.Int32)">
+            <summary>
+            Increases the reference count of the object.
+            </summary>
+            <param name="count">The number of times to reference the object.</param>
+            <returns>The new reference count.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Settings.SettingDefaultAttribute">
+            <summary>
+            Specifies a default value for a setting.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingDefaultAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SettingDefaultAttribute class.
+            </summary>
+            <param name="value">
+            The default value of the setting specified as a string. 
+            This value must be convertible to the setting's type.
+            </param>
+        </member>
+        <member name="P:ProcessHacker.Common.Settings.SettingDefaultAttribute.Value">
+            <summary>
+            Gets the default value specified for the setting.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Settings.SettingsBase">
+            <summary>
+            Provides the base class used to support settings.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.#ctor(ProcessHacker.Common.Settings.ISettingsStore)">
+            <summary>
+            Creates a settings class with the specified storage provider.
+            </summary>
+            <param name="store">The storage provider.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.Settings.SettingsBase.Item(System.String)">
+            <summary>
+            Gets or sets a setting.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <returns>The value of the setting.</returns>
+        </member>
+        <member name="P:ProcessHacker.Common.Settings.SettingsBase.Store">
+            <summary>
+            Gets the underlying storage for the settings class.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.ConvertFromString(System.String,System.Type)">
+            <summary>
+            Converts a string to an instance of another type.
+            </summary>
+            <param name="value">The string to convert.</param>
+            <param name="valueType">The type of the output value.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.ConvertToString(System.Object,System.Type)">
+            <summary>
+            Converts an object to a string.
+            </summary>
+            <param name="value">The object to convert.</param>
+            <param name="valueType">The type of the input value.</param>
+            <returns>The string representation of the object.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.GetSettingDefault(System.String)">
+            <summary>
+            Gets the default value of a setting.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <returns>A string representation of the setting's default value.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.GetSettingType(System.String)">
+            <summary>
+            Gets the type of a setting.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <returns>The type of the setting.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.GetValue(System.String)">
+            <summary>
+            Gets the value of a setting.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <returns>The value of the setting.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.Invalidate">
+            <summary>
+            Causes all cached setting values to be invalidated.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.Reload">
+            <summary>
+            Discards any unsaved changes made to settings.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.Reset">
+            <summary>
+            Resets all settings to their default values.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.Save">
+            <summary>
+            Saves settings to persistent storage.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.SettingsBase.SetValue(System.String,System.Object)">
+            <summary>
+            Sets the value of a setting.
+            </summary>
+            <param name="name">The name of the setting.</param>
+            <param name="value">The new value of the setting.</param>
+        </member>
+        <member name="T:ProcessHacker.Common.Settings.ISettingsStore">
+            <summary>
+            Provides an interface for saving settings to persistent storage.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.ISettingsStore.Flush">
+            <summary>
+            Flushes persistent storage.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.ISettingsStore.GetValue(System.String)">
+            <summary>
+            Gets a setting value from persistent storage.
+            </summary>
+            <param name="name">The case-sensitive name of the setting.</param>
+            <returns>A string if a value was found for the setting, otherwise null.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.ISettingsStore.Reset">
+            <summary>
+            Resets the persistent storage, deleting all stored values.
+            </summary>
+            <remarks>
+            This usually means deleting the settings file. A flush operation 
+            is also assumed to be performed.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.ISettingsStore.SetValue(System.String,System.String)">
+            <summary>
+            Saves a setting value into persistent storage.
+            </summary>
+            <param name="name">The case-sensitive name of the setting.</param>
+            <param name="value">The new value of the setting.</param>
+            <remarks>
+            The <paramref name="value"/> string must not be null 
+            (but can be empty).
+            </remarks>
+        </member>
+        <member name="T:ProcessHacker.Common.Settings.XmlFileSettingsStore">
+            <summary>
+            Provides an XML-based settings store.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.XmlFileSettingsStore.#ctor(System.String)">
+            <summary>
+            Creates a new settings store from the specified file.
+            </summary>
+            <param name="fileName">The name of the settings file.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.Settings.XmlFileSettingsStore.FileName">
+            <summary>
+            Gets the settings file name.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.XmlFileSettingsStore.Flush">
+            <summary>
+            Flushes persistent storage.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.XmlFileSettingsStore.GetValue(System.String)">
+            <summary>
+            Gets a setting value from persistent storage.
+            </summary>
+            <param name="name">The case-sensitive name of the setting.</param>
+            <returns>A string if a value was found for the setting, otherwise null.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.XmlFileSettingsStore.Reset">
+            <summary>
+            Resets the persistent storage, deleting all stored values.
+            </summary>
+            <remarks>
+            This usually means deleting the settings file. A flush operation 
+            is also assumed to be performed.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Settings.XmlFileSettingsStore.SetValue(System.String,System.String)">
+            <summary>
+            Saves a setting value into persistent storage.
+            </summary>
+            <param name="name">The case-sensitive name of the setting.</param>
+            <param name="value">The new value of the setting.</param>
+            <remarks>
+            The <paramref name="value"/> string must not be null 
+            (but can be empty).
+            </remarks>
+        </member>
+        <member name="T:ProcessHacker.Common.String255">
+            <summary>
+            Stores a string with a maximum length of 255 characters.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.FairResourceLock">
+            <summary>
+            Provides a fast and fair resource (reader-writer) lock.
+            </summary>
+            <remarks>
+            FairResourceLock has slightly more overhead than FastResourceLock, 
+            but guarantees that waiters will be released in FIFO order and 
+            provides better ownership conversion functions. In most cases 
+            FairResourceLock will also perform better under heavy contention.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqExcl">
+            <summary>
+            The number of times the lock has been acquired in exclusive mode.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqShrd">
+            <summary>
+            The number of times the lock has been acquired in shared mode.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqExclCont">
+            <summary>
+            The number of times either the fast path was retried due to the 
+            spin count or the exclusive waiter blocked on its wait block.
+            </summary>
+            <remarks>
+            This number is usually much higher than AcqExcl, and indicates 
+            a good spin count if AcqExclBlk/Slp is very small.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqShrdCont">
+            <summary>
+            The number of times either the fast path was retried due to the 
+            spin count or the shared waiter blocked on its wait block.
+            </summary>
+            <remarks>
+            This number is usually much higher than AcqShrd, and indicates 
+            a good spin count if AcqShrdBlk/Slp is very small.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqExclBlk">
+            <summary>
+            The number of times exclusive waiters have blocked on their 
+            wait blocks.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqShrdBlk">
+            <summary>
+            The number of times shared waiters have blocked on their 
+            wait blocks.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqExclSlp">
+            <summary>
+            The number of times exclusive waiters have gone to sleep.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.AcqShrdSlp">
+            <summary>
+            The number of times shared waiters have gone to sleep.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.InsWaitBlkRetry">
+            <summary>
+            The number of times the waiters bit was unable to be 
+            set while the waiters list spinlock was acquired in 
+            order to insert a wait block.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.PeakExclWtrsCount">
+            <summary>
+            The highest number of exclusive waiters at any one time.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.Statistics.PeakShrdWtrsCount">
+            <summary>
+            The highest number of shared waiters at any one time.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.ListPosition.First">
+            <summary>
+            The wait block will be inserted ahead of all other wait blocks.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.ListPosition.LastExclusive">
+            <summary>
+            The wait block will be inserted behind all exclusive wait blocks 
+            but ahead of the first shared wait block (if any).
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FairResourceLock.ListPosition.Last">
+            <summary>
+            The wait block will be inserted behind all other wait blocks.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.#ctor">
+            <summary>
+            Creates a FairResourceLock.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.#ctor(System.Int32)">
+            <summary>
+            Creates a FairResourceLock, specifying a spin count.
+            </summary>
+            <param name="spinCount">
+            The number of times to spin before going to sleep.
+            </param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.Dispose">
+            <summary>
+            Disposes resources associated with the FairResourceLock.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FairResourceLock.Owned">
+            <summary>
+            Gets whether the lock is owned in either 
+            exclusive or shared mode.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FairResourceLock.SharedOwners">
+            <summary>
+            Gets the number of shared owners.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FairResourceLock.SpinCount">
+            <summary>
+            Gets the number of times to spin before going to sleep.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.AcquireExclusive">
+            <summary>
+            Acquires the lock in exclusive mode, blocking 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are given precedence over shared 
+            acquires.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.AcquireShared">
+            <summary>
+            Acquires the lock in shared mode, blocking 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are given precedence over shared 
+            acquires.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.Block(ProcessHacker.Common.Threading.FairResourceLock.WaitBlock*)">
+            <summary>
+            Blocks on a wait block.
+            </summary>
+            <param name="waitBlock">The wait block to block on.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.ConvertExclusiveToShared">
+            <summary>
+            Converts the ownership mode from exclusive to shared.
+            </summary>
+            <remarks>
+            This operation is almost the same as releasing then 
+            acquiring in shared mode, except that exclusive waiters 
+            are not given a chance to acquire the lock.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.ConvertSharedToExclusive">
+            <summary>
+            Converts the ownership mode from shared to exclusive, 
+            blocking if necessary.
+            </summary>
+            <remarks>
+            This operation is almost the same as releasing then 
+            acquiring in exclusive mode, except that the caller is 
+            placed ahead of all other waiters when acquiring.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.CreateWakeEvent">
+            <summary>
+            Creates a wake event.
+            </summary>
+            <returns>A handle to the keyed event.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.GetStatistics">
+            <summary>
+            Gets statistics information for the lock.
+            </summary>
+            <returns>A structure containing statistics.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.InsertWaitBlock(ProcessHacker.Common.Threading.FairResourceLock.WaitBlock*,ProcessHacker.Common.Threading.FairResourceLock.ListPosition)">
+            <summary>
+            Inserts a wait block into the waiters list.
+            </summary>
+            <param name="waitBlock">The wait block to insert.</param>
+            <param name="position">Specifies where to insert the wait block.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.ReleaseExclusive">
+            <summary>
+            Releases the lock in exclusive mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.ReleaseShared">
+            <summary>
+            Releases the lock in shared mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.TryAcquireExclusive">
+            <summary>
+            Attempts to acquire the lock in exclusive mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.TryAcquireShared">
+            <summary>
+            Attempts to acquire the lock in shared mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.TryConvertSharedToExclusive">
+            <summary>
+            Attempts to convert the ownership mode from shared to exclusive.
+            </summary>
+            <returns>Whether the lock was converted.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.Unblock(ProcessHacker.Common.Threading.FairResourceLock.WaitBlock*)">
+            <summary>
+            Unblocks a wait block.
+            </summary>
+            <param name="waitBlock">The wait block to unblock.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.Wake">
+            <summary>
+            Wakes either one exclusive waiter or multiple shared waiters.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.WakeExclusive">
+            <summary>
+            Wakes one exclusive waiter.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FairResourceLock.WakeShared">
+            <summary>
+            Wakes multiple shared waiters.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.FastEvent">
+            <summary>
+            Provides a fast synchronization event.
+            </summary>
+            <remarks>
+            This event structure will not create any kernel-mode 
+            event object until necessary.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.#ctor(System.Boolean)">
+            <summary>
+            Creates a synchronization event.
+            </summary>
+            <param name="value">
+            The initial value of the event. Always set to false.
+            </param>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FastEvent.Value">
+            <summary>
+            Gets the current value of the event.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.DerefEvent">
+            <summary>
+            Dereferences the event, closing it if necessary.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.RefEvent">
+            <summary>
+            References the event.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.Reset">
+            <summary>
+            Resets the event.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.Set">
+            <summary>
+            Sets the event.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.SpinWait">
+            <summary>
+            Waits for the event to be set by busy waiting.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.SpinWait(System.Int32)">
+            <summary>
+            Waits for the event to be set by busy waiting.
+            </summary>
+            <param name="spinCount">The number of times to check the value.</param>
+            <returns>Whether the event was set during the wait period.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.Wait">
+            <summary>
+            Waits for the event to be set.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastEvent.Wait(System.Int32)">
+            <summary>
+            Waits for the event to be set.
+            </summary>
+            <param name="millisecondsTimeout">The number of milliseconds to wait.</param>
+            <returns>Whether the event was set before the timeout period elapsed.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.FastMutex">
+            <summary>
+            Provides methods for synchronizing access to a shared resource.
+            </summary>
+            <remarks>Just a wrapper around Monitor (minus the event methods 
+            like Pulse and Wait).</remarks>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.FastMutex.FastMutexContext">
+            <summary>
+            Represents a context for mutex acquisition.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.FastMutexContext.Dispose">
+            <summary>
+            Releases the mutex.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.Acquire">
+            <summary>
+            Acquires the mutex and prevents others from acquiring it. 
+            If the mutex is already acquired, the function will block 
+            until it can acquire the mutex.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.AcquireContext">
+            <summary>
+            Acquires the mutex and returns a context object which 
+            must be disposed to release the mutex.
+            </summary>
+            <returns>The context object.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.Release">
+            <summary>
+            Releases the mutex and allows others to acquire the mutex.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.TryAcquire">
+            <summary>
+            Attempts to acquire the mutex and returns immediately 
+            regardless of whether the mutex was acquired.
+            </summary>
+            <returns>Whether or not the mutex was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastMutex.TryAcquire(System.Int32)">
+            <summary>
+            Attempts to acquire the mutex and returns after a 
+            timeout period if the mutex could not be acquired.
+            </summary>
+            <param name="millisecondsTimeout">The timeout, in milliseconds.</param>
+            <returns>Whether or not the mutex was acquired.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.FastResourceLock">
+            <summary>
+            Provides a fast resource (reader-writer) lock.
+            </summary>
+            <remarks>
+            There are three types of acquire methods in this lock:
+            
+            Normal methods (AcquireExclusive, AcquireShared) are preferred 
+            for general purpose use.
+            Busy wait methods (SpinAcquireExclusive, SpinAcquireShared) are 
+            preferred if very little time is spent while the lock is acquired. 
+            However, these do not give exclusive acquires precedence over 
+            shared acquires.
+            Try methods (TryAcquireExclusive, TryAcquireShared) can be used to 
+            quickly test if the lock is available.
+            
+            Note that all three types of functions can be used concurrently 
+            in the same class instance.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqExcl">
+            <summary>
+            The number of times the lock has been acquired in exclusive mode.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqShrd">
+            <summary>
+            The number of times the lock has been acquired in shared mode.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqExclCont">
+            <summary>
+            The number of times either the fast path was retried due to the 
+            spin count or the exclusive waiter went to sleep.
+            </summary>
+            <remarks>
+            This number is usually much higher than AcqExcl, and indicates 
+            a good spin count if AcqExclSlp is very small.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqShrdCont">
+            <summary>
+            The number of times either the fast path was retried due to the 
+            spin count or the shared waiter went to sleep.
+            </summary>
+            <remarks>
+            This number is usually much higher than AcqShrd, and indicates 
+            a good spin count if AcqShrdSlp is very small.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqExclSlp">
+            <summary>
+            The number of times exclusive waiters have gone to sleep.
+            </summary>
+            <remarks>
+            If this number is high and not much time is spent in the 
+            lock, consider increasing the spin count.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.AcqShrdSlp">
+            <summary>
+            The number of times shared waiters have gone to sleep.
+            </summary>
+            <remarks>
+            If this number is high and not much time is spent in the 
+            lock, consider increasing the spin count.
+            </remarks>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.PeakExclWtrsCount">
+            <summary>
+            The highest number of exclusive waiters at any one time.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Threading.FastResourceLock.Statistics.PeakShrdWtrsCount">
+            <summary>
+            The highest number of shared waiters at any one time.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.#ctor">
+            <summary>
+            Creates a FastResourceLock.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.Dispose">
+            <summary>
+            Disposes resources associated with the FastResourceLock.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FastResourceLock.ExclusiveWaiters">
+            <summary>
+            Gets the number of exclusive waiters.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FastResourceLock.Owned">
+            <summary>
+            Gets whether the lock is owned in either 
+            exclusive or shared mode.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FastResourceLock.SharedOwners">
+            <summary>
+            Gets the number of shared owners.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.FastResourceLock.SharedWaiters">
+            <summary>
+            Gets the number of shared waiters.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.AcquireExclusive">
+            <summary>
+            Acquires the lock in exclusive mode, blocking 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are given precedence over shared 
+            acquires.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.AcquireShared">
+            <summary>
+            Acquires the lock in shared mode, blocking 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are given precedence over shared 
+            acquires.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.ConvertExclusiveToShared">
+            <summary>
+            Converts the ownership mode from exclusive to shared.
+            </summary>
+            <remarks>
+            Exclusive acquires are not given a chance to acquire 
+            the lock before this function does - as a result, 
+            this function will never block.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.EnsureEventCreated(System.IntPtr@)">
+            <summary>
+            Checks if the specified event has been created, and 
+            if not, creates it.
+            </summary>
+            <param name="handle">A reference to the event handle.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.GetStatistics">
+            <summary>
+            Gets statistics information for the lock.
+            </summary>
+            <returns>A structure containing statistics.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.ReleaseExclusive">
+            <summary>
+            Releases the lock in exclusive mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.ReleaseShared">
+            <summary>
+            Releases the lock in shared mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.SpinAcquireExclusive">
+            <summary>
+            Acquires the lock in exclusive mode, busy waiting 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are *not* given precedence over shared 
+            acquires for busy wait methods.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.SpinAcquireShared">
+            <summary>
+            Acquires the lock in shared mode, busy waiting 
+            if necessary.
+            </summary>
+            <remarks>
+            Exclusive acquires are *not* given precedence over shared 
+            acquires for busy wait methods.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.SpinConvertSharedToExclusive">
+            <summary>
+            Converts the ownership mode from shared to exclusive, 
+            busy waiting if necessary.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.TryAcquireExclusive">
+            <summary>
+            Attempts to acquire the lock in exclusive mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.TryAcquireShared">
+            <summary>
+            Attempts to acquire the lock in shared mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.FastResourceLock.TryConvertSharedToExclusive">
+            <summary>
+            Attempts to convert the ownership mode from shared 
+            to exclusive.
+            </summary>
+            <returns>Whether the lock was converted.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.AcquireExclusive">
+            <summary>
+            Acquires the lock in exclusive mode, blocking if necessary.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.AcquireShared">
+            <summary>
+            Acquires the lock in shared mode, blocking if necessary.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.ReleaseExclusive">
+            <summary>
+            Releases the lock in exclusive mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.ReleaseShared">
+            <summary>
+            Releases the lock in shared mode.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.TryAcquireExclusive">
+            <summary>
+            Attempts to acquire the lock in exclusive mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.IResourceLock.TryAcquireShared">
+            <summary>
+            Attempts to acquire the lock in shared mode.
+            </summary>
+            <returns>Whether the lock was acquired.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.RundownProtection">
+            <summary>
+            Provides methods for managing object/resource destruction.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.#ctor(System.Int32)">
+            <summary>
+            Initializes a rundown protection structure.
+            </summary>
+            <param name="value">The initial usage count.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.RundownProtection.Count">
+            <summary>
+            Gets the current usage count.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.RundownProtection.Rundown">
+            <summary>
+            Gets whether the rundown has been initiated.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Acquire">
+            <summary>
+            Attempts to acquire rundown protection.
+            </summary>
+            <returns>Whether rundown protection was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Acquire(System.Int32)">
+            <summary>
+            Attempts to acquire rundown protection.
+            </summary>
+            <param name="count">The usage count to add.</param>
+            <returns>Whether rundown protection was acquired.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Release">
+            <summary>
+            Releases rundown protection.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Release(System.Int32)">
+            <summary>
+            Releases rundown protection.
+            </summary>
+            <param name="count">The usage count to subtract.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Wait">
+            <summary>
+            Waits for all references to be released while disallowing 
+            attempts to acquire rundown protection.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.RundownProtection.Wait(System.Int32)">
+            <summary>
+            Waits for all references to be released while disallowing 
+            attempts to acquire rundown protection.
+            </summary>
+            <param name="millisecondsTimeout">The timeout, in milliseconds.</param>
+            <returns>Whether all references were released.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.ActionSync">
+            <summary>
+            Provides methods for synchronizing the execution of a 
+            single action.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.ActionSync.#ctor(System.Action,System.Int32)">
+            <summary>
+            Initializes an action-sync structure.
+            </summary>
+            <param name="action">The action to be executed.</param>
+            <param name="target">
+            The target value required in order to execute the action.
+            </param>
+        </member>
+        <member name="P:ProcessHacker.Common.Threading.ActionSync.Value">
+            <summary>
+            Gets the current value of the action-sync structure.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.ActionSync.Increment">
+            <summary>
+            Increments the current value and executes the action 
+            if the target value has been reached due to this call.
+            </summary>
+            <remarks>
+            The action is guaranteed to execute exactly once, 
+            even if two threads increment the value at the same 
+            time.
+            </remarks>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.ActionSync.IncrementMultiple">
+            <summary>
+            Increments the current value and executes the action 
+            if the target value has been reached.
+            </summary>
+            <remarks>
+            The action may be executed multiple times, as long 
+            as the target value has been reached.
+            </remarks>
+        </member>
+        <member name="T:ProcessHacker.Common.Threading.SpinLock">
+            <summary>
+            Represents a spinlock, a high-performance mutual exclusion lock.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.SpinLock.Acquire">
+            <summary>
+            Acquires the spinlock.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.SpinLock.AcquireContext">
+            <summary>
+            Acquires the spinlock using a context object.
+            </summary>
+            <returns>A disposable context object.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Threading.SpinLock.Release">
+            <summary>
+            Releases the spinlock.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.ISubtractor`1">
+            <summary>
+            Defines subtraction for a numeric type.
+            </summary>
+            <typeparam name="T">The numeric type.</typeparam>
+        </member>
+        <member name="M:ProcessHacker.Common.ISubtractor`1.Subtract(`0,`0)">
+            <summary>
+            Subtracts v2 from v1, i.e., v1 - v2.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Int64Subtractor">
+            <summary>
+            Provides subtraction for 64-bit integers.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.Int32Subtractor">
+            <summary>
+            Provides subtraction for 32-bit integers.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.DoubleSubtractor">
+            <summary>
+            Provides subtraction for double-precision floating-point values.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.FloatSubtractor">
+            <summary>
+            Provides subtraction for single-precision floating-point values.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.EnumComparer`1.generateEquals">
+            <summary>
+            Generates a comparison method similar to this:
+            <code>
+            bool Equals(TEnum x, TEnum y)
+            {
+                return x == y;
+            }
+            </code>
+            </summary>
+            <returns>The generated method.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.EnumComparer`1.generateGetHashCode">
+            <summary>
+            Generates a GetHashCode method similar to this:
+            <code>
+            int GetHashCode(TEnum obj)
+            {
+                return ((int)obj).GetHashCode();
+            }
+            </code>
+            </summary>
+            <returns>The generated method.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.FreeList`1">
+            <summary>
+            Manages a list of free objects that can be re-used.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.IdGenerator">
+            <summary>
+            Provides a facility for generating unique IDs.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.IdGenerator.#ctor">
+            <summary>
+            Creates a new ID generator.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.IdGenerator.#ctor(System.Int32)">
+            <summary>
+            Creates a new ID generator.
+            </summary>
+            <param name="start">The starting ID.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.IdGenerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new ID generator.
+            </summary>
+            <param name="start">The starting ID.</param>
+            <param name="step">The number each ID will be divisible by.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.IdGenerator.Pop">
+            <summary>
+            Generates a new ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.IdGenerator.Push(System.Int32)">
+            <summary>
+            Makes an ID available for use.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:ProcessHacker.Common.Ui.SortedListViewComparer">
+            <summary>
+            Provides automatic sorting support for the ListView control.
+            </summary>
+            <example>
+            myListView.ListViewItemSorter = new SortedListComparer(myListView);
+            </example>
+        </member>
+        <member name="M:ProcessHacker.Common.Ui.SortedListViewComparer.#ctor(System.Windows.Forms.ListView)">
+            <summary>
+            Creates a new sorted list manager.
+            </summary>
+            <param name="list">The ListView to manage.</param>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.VirtualMode">
+            <summary>
+            Specifies whether the ListView is using VirtualMode. If true,
+            the SortedListComparer will not automatically sort the ListView.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.TriState">
+            <summary>
+            Allows three states of sorting: Ascending, Descending and None. 
+            You must specify the sorter used for the None state using 
+            TriStateComparer.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.Comparer">
+            <summary>
+            The comparer to use when sorting. This is optional because a
+            default comparer will be provided.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.TriStateComparer">
+            <summary>
+            Specifies the sorter used for the None sorting state.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.SortColumn">
+            <summary>
+            Specifies the index of the column to sort.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.SortOrder">
+            <summary>
+            Specifies the sort order/state.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.Ui.SortedListViewComparer.CustomSorters">
+            <summary>
+            Allows custom sorting for individual columns.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Ui.SortedListViewComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares two ListView objects.
+            </summary>
+            <param name="x">The first ListView.</param>
+            <param name="y">The second ListView.</param>
+            <returns>A comparison result.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.Utils">
+            <summary>
+            Provides methods for manipulating various types of data.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.Utils.UnitSpecifier">
+            <summary>
+            The maximum unit specifier to use when formatting sizes.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Align(System.Int32,System.Int32)">
+            <summary>
+            Aligns a number to the specified power-of-two alignment value.
+            </summary>
+            <param name="value">The number to align.</param>
+            <param name="alignment">A power-of-two alignment value.</param>
+            <returns>
+            The nearest multiple of the alignment greater than or equal to the number.
+            </returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Concat``1(``0[][])">
+            <summary>
+            Flattens an array of arrays into a single array.
+            </summary>
+            <typeparam name="T">The type of each element in the arrays.</typeparam>
+            <param name="ap">
+            An array of arrays. If an array in the array is null, it will be ignored.
+            </param>
+            <returns>An array containing elements from each array.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Contains``1(``0[],``0)">
+            <summary>
+            Determines whether the specified value is contained 
+            within an array.
+            </summary>
+            <typeparam name="T">The type of the array.</typeparam>
+            <param name="array">The array to search.</param>
+            <param name="value">The value to search for.</param>
+            <returns>True if the array contains the value, otherwise false.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.CountBits(System.Int32)">
+            <summary>
+            Counts the number of bits in the specified number.
+            </summary>
+            <param name="value">The number to process.</param>
+            <returns>The number of bits in the specified number.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.CountBits(System.Int64)">
+            <summary>
+            Counts the number of bits in the specified number.
+            </summary>
+            <param name="value">The number to process.</param>
+            <returns>The number of bits in the specified number.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Create(System.Byte*,System.Int32)">
+            <summary>
+            Creates an array of bytes from the specified byte pointer.
+            </summary>
+            <param name="ptr">A pointer to an array of bytes.</param>
+            <param name="length">The length of the array.</param>
+            <returns>A new byte array.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.CreateEllipsis(System.String,System.Int32)">
+            <summary>
+            Adds an ellipsis to a string if it is longer than the specified length.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="len">The maximum length.</param>
+            <returns>The modified string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.CreateRandomString(System.Int32)">
+            <summary>
+            Creates a string containing random uppercase characters.
+            </summary>
+            <param name="length">The number of characters to generate.</param>
+            <returns>The generated string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.DisposeAndClear(System.Windows.Forms.Menu.MenuItemCollection)">
+            <summary>
+            Clears and cleans up resources held by the menu items.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.DisableAllMenuItems(System.Windows.Forms.Menu)">
+            <summary>
+            Disables the menu items contained in the specified menu. 
+            </summary>
+            <param name="menu">The menu.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.DisableAll(System.Windows.Forms.Menu)">
+            <summary>
+            Disables all menu items. 
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.DivideUp(System.Int32,System.Int32)">
+            <summary>
+            Performs a divide operation, rounding up.
+            </summary>
+            <param name="dividend">
+            The positive number to divide. The result is undefined if the dividend 
+            is negative or zero.
+            </param>
+            <param name="divisor">
+            The positive number to divide by. The result is undefined if the divisor 
+            is negative or zero.
+            </param>
+            <returns>A rounded-up quotient.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.DoDelayed(System.Windows.Forms.Control,System.Action{System.Windows.Forms.Control})">
+            <summary>
+            Performs an action on a control after its handle has been created. 
+            If the control's handle has already been created, the action is 
+            executed immediately.
+            </summary>
+            <param name="control">The control is execute the action on.</param>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Duplicate``1(``0[])">
+            <summary>
+            Duplicates the specified array.
+            </summary>
+            <typeparam name="T">The type of array to duplicate.</typeparam>
+            <param name="array">The array to duplicate.</param>
+            <returns>A copy of the specified array.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.EnableAllMenuItems(System.Windows.Forms.Menu)">
+            <summary>
+            Enables the menu items contained in the specified menu. 
+            </summary>
+            <param name="menu">The menu.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.EnableAll(System.Windows.Forms.Menu)">
+            <summary>
+            Enables all menu items. 
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Equals``1(``0[],``0[])">
+            <summary>
+            Compares two arrays and determines whether they are equal.
+            </summary>
+            <typeparam name="T">The type of each element in the arrays.</typeparam>
+            <param name="array">The first array.</param>
+            <param name="other">The second array.</param>
+            <returns>Whether the two arrays are considered to be equal.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Equals``1(``0[],``0[],System.Int32)">
+            <summary>
+            Compares two arrays and determines whether they are equal.
+            </summary>
+            <typeparam name="T">The type of each element in the arrays.</typeparam>
+            <param name="array">The first array.</param>
+            <param name="other">The second array.</param>
+            <param name="startIndex">The index from which to begin comparing.</param>
+            <returns>Whether the two arrays are considered to be equal.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Equals``1(``0[],``0[],System.Int32,System.Int32)">
+            <summary>
+            Compares two arrays and determines whether they are equal.
+            </summary>
+            <typeparam name="T">The type of each element in the arrays.</typeparam>
+            <param name="array">The first array.</param>
+            <param name="other">The second array.</param>
+            <param name="startIndex">The index from which to begin comparing.</param>
+            <param name="length">The number of elements to compare.</param>
+            <returns>Whether the two arrays are considered to be equal.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Escape(System.String)">
+            <summary>
+            Escapes a string using C-style escaping.
+            </summary>
+            <param name="str">The string to escape.</param>
+            <returns>The escaped string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Fill(System.Windows.Forms.ComboBox,System.Type)">
+            <summary>
+            Fills a combobox with enum value names.
+            </summary>
+            <param name="box">The combobox to modify.</param>
+            <param name="t">The type of the enum.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FitRectangle(System.Drawing.Rectangle,System.Windows.Forms.Control)">
+            <summary>
+            Moves the specified rectangle to fit inside the working area 
+            of the display containing the specified control.
+            </summary>
+            <param name="rect">The rectangle to process.</param>
+            <param name="c">The control from which to get the display.</param>
+            <returns>A new rectangle with its location modified.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FitRectangle(System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            Moves the specified rectangle to fit inside the specified bounds.
+            </summary>
+            <param name="rect">The rectangle to process.</param>
+            <param name="bounds">The bounds in which the rectangle should be.</param>
+            <returns>A new rectangle with its location modified.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatAddress(System.Int32)">
+            <summary>
+            Gets a string representation for an address.
+            </summary>
+            <param name="address">An address.</param>
+            <returns>A string representation of the specified address.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatAddress(System.UInt32)">
+            <summary>
+            Gets a string representation for an address.
+            </summary>
+            <param name="address">An address.</param>
+            <returns>A string representation of the specified address.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatAddress(System.Int64)">
+            <summary>
+            Gets a string representation for an address.
+            </summary>
+            <param name="address">An address.</param>
+            <returns>A string representation of the specified address.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatAddress(System.UInt64)">
+            <summary>
+            Gets a string representation for an address.
+            </summary>
+            <param name="address">An address.</param>
+            <returns>A string representation of the specified address.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatAddress(System.IntPtr)">
+            <summary>
+            Gets a string representation for an address.
+            </summary>
+            <param name="address">An address.</param>
+            <returns>A string representation of the specified address.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatLongTimeSpan(System.TimeSpan)">
+            <summary>
+            Formats a <see cref="T:System.TimeSpan"/> object into a string representation.
+            </summary>
+            <param name="time">The <see cref="T:System.TimeSpan"/> to format.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatRelativeDateTime(System.DateTime)">
+            <summary>
+            Gets the relative time in nice English.
+            </summary>
+            <param name="time">A DateTime.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatSize(System.Int32)">
+            <summary>
+            Formats a size into a string representation, postfixing it with the correct unit.
+            </summary>
+            <param name="size">The size to format.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatSize(System.UInt32)">
+            <summary>
+            Formats a size into a string representation, postfixing it with the correct unit.
+            </summary>
+            <param name="size">The size to format.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatSize(System.IntPtr)">
+            <summary>
+            Formats a size into a string representation, postfixing it with the correct unit.
+            </summary>
+            <param name="size">The size to format.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatSize(System.Int64)">
+            <summary>
+            Formats a size into a string representation, postfixing it with the correct unit.
+            </summary>
+            <param name="size">The size to format.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatSize(System.UInt64)">
+            <summary>
+            Formats a size into a string representation, postfixing it with the correct unit.
+            </summary>
+            <param name="size">The size to format.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.FormatTimeSpan(System.TimeSpan)">
+            <summary>
+            Formats a <see cref="T:System.TimeSpan"/> object into a string representation.
+            </summary>
+            <param name="time">The <see cref="T:System.TimeSpan"/> to format.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.GetDateTimeFromUnixTime(System.UInt32)">
+            <summary>
+            Converts a 32-bit Unix time value into a DateTime object.
+            </summary>
+            <param name="time">The Unix time value.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.GetRectangle(System.String)">
+            <summary>
+            Parses a string and produces a rectangle.
+            </summary>
+            <param name="s">
+            A string describing a rectangle in the following format: 
+            x,y,width,height (with no spaces).
+            </param>
+            <returns>A rectangle.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.GetThreadFromId(System.Diagnostics.Process,System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.Diagnostics.ProcessThread"/> object of the specified thread ID.
+            </summary>
+            <param name="p">The process which the thread belongs to.</param>
+            <param name="id">The ID of the thread.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.IsEmpty(System.Byte[])">
+            <summary>
+            Determines whether the array is empty (all 0's).
+            </summary>
+            <param name="array">The array to search.</param>
+            <returns>True if the array is empty; otherwise false.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.MakePrintable(System.Char)">
+            <summary>
+            Makes a character printable by converting unprintable characters to a dot ('.').
+            </summary>
+            <param name="c">The character to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.MakePrintable(System.String)">
+            <summary>
+            Makes a string printable by converting unprintable characters to a dot ('.').
+            </summary>
+            <param name="s">The string to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.MatchWildcards(System.String,System.String)">
+            <summary>
+            Determines whether a string matches according to a wildcard expression.
+            </summary>
+            <param name="pattern">The wildcard expression.</param>
+            <param name="text">The string to match.</param>
+            <returns>Whether the string matches.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.ReadString(System.IO.Stream)">
+            <summary>
+            Reads a null-terminated string from a stream.
+            </summary>
+            <param name="s">The stream to read from.</param>
+            <returns>The read string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.ReadUnicodeString(System.IO.Stream)">
+            <summary>
+            Reads a null-terminated Unicode string from a stream.
+            </summary>
+            <param name="s">The stream to read from.</param>
+            <returns>The read string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.ReadUnicodeString(System.IO.Stream,System.Int32)">
+            <summary>
+            Reads a Unicode string from a stream.
+            </summary>
+            <param name="s">The stream to read from.</param>
+            <param name="length">The length, in bytes, of the string.</param>
+            <returns>The read string.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Reverse(System.Int32)">
+            <summary>
+            Swaps the order of the bytes.
+            </summary>
+            <param name="v">The number to change.</param>
+            <returns>A number.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Reverse(System.UInt32)">
+            <summary>
+            Swaps the order of the bytes.
+            </summary>
+            <param name="v">The number to change.</param>
+            <returns>A number.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Reverse(System.UInt16)">
+            <summary>
+            Swaps the order of the bytes.
+            </summary>
+            <param name="v">The number to change.</param>
+            <returns>A number.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.Reverse``1(``0[])">
+            <summary>
+            Reverses an array.
+            </summary>
+            <param name="data">The array to reverse.</param>
+            <returns>A new array.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SelectAll(System.Windows.Forms.ListView.ListViewItemCollection)">
+            <summary>
+            Selects all of the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SelectAll(System.Windows.Forms.ListView)">
+            <summary>
+            Selects all of the items in the specified ListView.
+            </summary>
+            <param name="items">The ListView to process.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SetDoubleBuffered(System.Windows.Forms.Control,System.Type,System.Boolean)">
+            <summary>
+            Enables or disables double buffering for a control.
+            </summary>
+            <param name="c">The control.</param>
+            <param name="t">The type of the control.</param>
+            <param name="value">The new setting.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SetDoubleBuffered(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            Enables or disables double buffering for a control.
+            </summary>
+            <param name="c">The control to set the property on.</param>
+            <param name="value">The new value.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.ShowFileInExplorer(System.String)">
+            <summary>
+            Shows a file in Windows Explorer.
+            </summary>
+            <param name="fileName">The file to show.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SizeOf``1">
+            <summary>
+            Calculates the size of a structure.
+            </summary>
+            <typeparam name="T">The structure type.</typeparam>
+            <returns>The size of the structure.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SizeOf``1(System.Int32)">
+            <summary>
+            Calculates the size of a structure.
+            </summary>
+            <typeparam name="T">The structure type.</typeparam>
+            <param name="alignment">A power-of-two whole-structure alignment to apply.</param>
+            <returns>The size of the structure.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.Utils.SortFlagNames(System.Type)">
+            <summary>
+            Returns a sorted list of the names in a given enum type.
+            </summary>
+            <param name="enumType">The enum type to process.</param>
+            <returns>A list of key-value pairs, sorted based on the number of bits in the value.</returns>
+        </member>
+        <member name="T:ProcessHacker.Common.WorkQueue">
+            <summary>
+            Manages a work queue which is executed by worker threads.
+            </summary>
+        </member>
+        <member name="T:ProcessHacker.Common.WorkQueue.WorkItem">
+            <summary>
+            Represents a work item to be executed on a worker thread.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkItem.Tag">
+            <summary>
+            The tag associated with the work item.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkItem.Enabled">
+            <summary>
+            Whether the work item is to be executed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkItem.Completed">
+            <summary>
+            Whether the work item has been completed.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkItem.Result">
+            <summary>
+            The value returned by the target method.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkItem.Exception">
+            <summary>
+            The exception thrown by the work item target, if any.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkItem.Abort">
+            <summary>
+            If the work item has not been executed yet, prevents the 
+            work item from executing. Otherwise, takes no action.
+            </summary>
+            <returns>True if the work item has not been executed yet; otherwise false.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkItem.GetResult">
+            <summary>
+            Waits for the work item to complete and returns the result.
+            </summary>
+            <returns>The value returned by the target method.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkItem.PerformWork">
+            <summary>
+            Performs the work.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkItem.WaitOne">
+            <summary>
+            Waits for the work item to be completed.
+            </summary>
+            <returns>Always returns true.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkItem.WaitOne(System.Int32)">
+            <summary>
+            Waits for the work item to be completed.
+            </summary>
+            <param name="timeout">The timeout for the wait operation.</param>
+            <returns>
+            True if the work item was completed within the timeout 
+            (or was already completed); otherwise false.
+            </returns>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.GlobalWorkQueue">
+            <summary>
+            Gets the global work queue instance.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.GlobalQueueWorkItem(System.Delegate)">
+            <summary>
+            Queues work for the global work queue.
+            </summary>
+            <param name="work">The work to be executed.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.GlobalQueueWorkItem(System.Delegate,System.Object[])">
+            <summary>
+            Queues work for the global work queue.
+            </summary>
+            <param name="work">The work to be executed.</param>
+            <param name="args">The arguments to pass to the delegate.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.GlobalQueueWorkItemTag(System.Delegate,System.String)">
+            <summary>
+            Queues work for the global work queue.
+            </summary>
+            <param name="work">The work to be executed.</param>
+            <param name="tag">A tag for the work item.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.GlobalQueueWorkItemTag(System.Delegate,System.String,System.Object[])">
+            <summary>
+            Queues work for the global work queue.
+            </summary>
+            <param name="work">The work to be executed.</param>
+            <param name="tag">A tag for the work item.</param>
+            <param name="args">The arguments to pass to the delegate.</param>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._workQueue">
+            <summary>
+            The work queue. This object is used as a lock.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._maxWorkerThreads">
+            <summary>
+            The maximum number of worker threads. If there are less worker threads 
+            than this limit, they will be created as necessary. If there are more 
+            worker threads than this limit, they will terminate once they have 
+            finished processing their current work items.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._minWorkerThreads">
+            <summary>
+            The minimum number of worker threads. Worker threads will be created 
+            as necessary and the number of worker threads will never drop below 
+            this number.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._workerThreads">
+            <summary>
+            The pool of worker threads. This object is used as a lock.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._busyCount">
+            <summary>
+            The number of worker threads which are currently running work.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._noWorkTimeout">
+            <summary>
+            A worker will block on the work-arrived event for this amount of time 
+            before terminating.
+            </summary>
+        </member>
+        <member name="F:ProcessHacker.Common.WorkQueue._isJoining">
+            <summary>
+            If true, prevents new work items from being queued.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.#ctor">
+            <summary>
+            Creates a new work queue.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.BusyCount">
+            <summary>
+            Gets the number of worker threads that are currently busy.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.MaxWorkerThreads">
+            <summary>
+            Gets or sets the maximum number of worker threads.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.MinWorkerThreads">
+            <summary>
+            Gets or sets the minimum number of worker threads.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.NoWorkTimeout">
+            <summary>
+            Gets or sets the time, in milliseconds, after which a 
+            worker thread with no work will terminate. Specify 0 so that
+            worker threads will terminate immediately, or specify -1 so that
+            worker threads will wait indefinitely for work.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.QueuedCount">
+            <summary>
+            Gets the number of queued work items.
+            </summary>
+        </member>
+        <member name="P:ProcessHacker.Common.WorkQueue.WorkerCount">
+            <summary>
+            Gets the number of worker threads that are alive.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.CreateMinimumWorkerThreads">
+            <summary>
+            Creates worker threads if necessary to satisfy the 
+            worker thread minimum.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.CreateWorkerThread">
+            <summary>
+            Creates a worker thread.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.DestroyWorkerThread">
+            <summary>
+            Destroys the current worker thread.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.GetQueuedWorkItems">
+            <summary>
+            Gets the work items in the queue.
+            </summary>
+            <returns>An array of WorkItem objects.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.JoinAll">
+            <summary>
+            Waits for all work items to complete and prevents new work items from being queued.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.RemoveQueuedWorkItem(ProcessHacker.Common.WorkQueue.WorkItem)">
+            <summary>
+            Removes the work item from the work queue.
+            </summary>
+            <param name="workItem">The work item to remove</param>
+            <returns>If the work item was in the work queue, true. Otherwise, false.</returns>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.ResetJoin">
+            <summary>
+            Allows new work items to be queued.
+            </summary>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.QueueWorkItem(System.Delegate)">
+            <summary>
+            Queues work for the worker thread(s).
+            </summary>
+            <param name="work">The work to be performed.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.QueueWorkItem(System.Delegate,System.Object[])">
+            <summary>
+            Queues work for the worker thread(s).
+            </summary>
+            <param name="work">The work to be performed.</param>
+            <param name="args">The arguments to pass to the delegate.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.QueueWorkItemTag(System.Delegate,System.String)">
+            <summary>
+            Queues work for the worker thread(s).
+            </summary>
+            <param name="work">The work to be performed.</param>
+            <param name="tag">A tag for the work item.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.QueueWorkItemTag(System.Delegate,System.String,System.Object[])">
+            <summary>
+            Queues work for the worker thread(s).
+            </summary>
+            <param name="work">The work to be performed.</param>
+            <param name="tag">A tag for the work item.</param>
+            <param name="args">The arguments to pass to the delegate.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.QueueWorkItemTag(System.Delegate,System.String,System.Boolean,System.Object[])">
+            <summary>
+            Queues work for the worker thread(s).
+            </summary>
+            <param name="work">The work to be performed.</param>
+            <param name="tag">A tag for the work item.</param>
+            <param name="isArray">Ignored.</param>
+            <param name="args">The arguments to pass to the delegate.</param>
+        </member>
+        <member name="M:ProcessHacker.Common.WorkQueue.WorkerThreadStart">
+            <summary>
+            The entry point for all worker threads.
+            </summary>
+        </member>
+    </members>
+</doc>
